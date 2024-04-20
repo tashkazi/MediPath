@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - Provider Login</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url('uploads/medi.jpeg') center/cover no-repeat fixed;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+
+        .login-container {
+            padding-top: 50px;
+            margin-top: 200px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 70px;
+            padding-left: 70px;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-sizing: border-box;
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #2C3E50;
+        }
+
+        .logo-container img {
+            width: 100%;
+            max-width: 150px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        form label,
+        form input,
+        form textarea,
+        form select {
+            width: 100%;
+            padding: 5px;
+            margin: 2px;
+        }
+
+        form button {
+            margin-top: 6px;
+            width: 50%;
+            padding: 5px;
+        }
+
+        .registration-container p {
+            margin-top: 5px;
+        }
+
+        form p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="background-image">
+        <div class="login-container">
+            <div class="logo-container">
+                <img src="uploads/medi.png" alt="Logo">
+            </div>
+            <h2>Provider Login</h2>
+            <form id="loginForm" action="login.php" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="providerRegistration.html">Register</a></p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

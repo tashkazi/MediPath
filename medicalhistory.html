@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - Patient Medical History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        .dropdown-menu .notification-item a {
+            text-decoration: none;
+
+        }
+
+
+        header {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 5px;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notification-dropdown {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .notification-dropdown .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .notification-dropdown .dropdown-toggle i {
+            margin-right: 5px;
+        }
+
+        .menu-items {
+            margin-right: 20px;
+        }
+
+        .menu-items ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .menu-items li {
+            margin-left: 20px;
+        }
+
+        .menu-items a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+        }
+
+        .menu-items a:hover {
+            color: #fff;
+        }
+
+
+        .burger-icon button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ECF0F1;
+            padding: 5px;
+        }
+
+        .burger-icon {
+            display: none;
+        }
+
+        #menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .notification-dropdown {
+            margin-right: 10px;
+        }
+
+        .notification-dropdown .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .notification-dropdown .dropdown-toggle i {
+            margin-right: 5px;
+        }
+
+
+        .notification-badge {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 575px;
+            background-color: maroon;
+            color: white;
+            border-radius: 100%;
+            padding: 4px;
+            font-size: 6px;
+            min-width: 10px;
+            text-align: center;
+        }
+
+        .dropdown-menu {
+            display: none;
+            width: 90%;
+            top: 90px;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #0a0a0a;
+            padding: 10px;
+            color: #0a0a0a;
+            min-width: 200px;
+            z-index: 1;
+            right: 60px;
+            text-align: center;
+        }
+
+        .dropdown-menu li {
+            text-align: left;
+            color: #0a0a0a;
+            list-style: none;
+        }
+
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: #0a0a0a;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+        #menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-items {
+            margin-right: 10px;
+        }
+
+        .notification-dropdown {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .notification-dropdown .dropdown-toggle {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .notification-dropdown .dropdown-toggle i {
+            margin-right: 5px;
+        }
+
+        .menu-items ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-items li {
+            margin-left: 20px;
+        }
+
+        .menu-items a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+
+        body {
+            margin: 0;
+            align-content: center;
+            padding: 130px 0;
+            position: relative;
+        }
+
+
+        header {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 5px;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        footer {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+
+        #logo img {
+            max-width: 30%;
+            height: auto;
+            margin-left: -10px;
+            padding-left: 10px;
+        }
+
+        #menu-container {
+            padding-top: 30px;
+            padding-right: 20px;
+        }
+
+        #menu-container ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu-container li {
+            margin-left: 20px;
+        }
+
+        #menu-container a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .medical-history-heading {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            margin-left: 50px;
+            margin-top: 50px;
+            width: 95%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            width: 20%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img, video, audio {
+            max-width: 100%;
+            height: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .symptom-image {
+            height: 150px;
+            width: auto;
+        }
+
+        .burger-icon button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ECF0F1;
+            padding: 5px;
+        }
+
+        .burger-icon {
+            display: none;
+        }
+
+        @media only screen and (max-width: 768px) {
+            header {
+                padding: 10px 0;
+                margin-bottom: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .burger-icon {
+                display: block;
+            }
+
+            .menu-items {
+                display: none;
+            }
+
+            #menu-toggle:checked + .menu-items {
+                display: block;
+            }
+            .burger-icon {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-items {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: #2C3E50;
+                border: 1px solid #0a0a0a;
+                padding: 10px;
+                z-index: 1;
+            }
+
+            .menu-items.show-menu {
+                display: block;
+            }
+
+            .notification-dropdown {
+                margin-left: 10px;
+                top: 40px;
+            }
+
+
+        img, video, audio {
+                max-width: 80%;
+                height: 30%;
+                display: block;
+                margin: 0 auto;
+            }
+
+            .notification-badge {
+
+                right: 40px;
+                top: 20px;
+
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 180%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div id="logo">
+        <img src="uploads/medi.png" alt="Logo">
+    </div>
+    <div class="notification-dropdown">
+        <div class="dropdown-toggle"><i class="fas fa-bell"></i> <span class="notification-badge">0</span></div>
+        <div class="dropdown-menu">
+            <!-- Menu items go here -->
+        </div>
+    </div>
+    <div class="burger-icon">
+        <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="menu-items">
+        <ul>
+            <li><a href="patientHomepage.html">Home</a></li>
+            <li><a href="patientProfile.html">My Profile</a></li>
+            <li><a href="medicalhistory.html">Medical History</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="container">
+    <h2 class="medical-history-heading">Medical History</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Date and Time</th>
+            <th>Symptom Description</th>
+            <th>Image</th>
+            <th>Video</th>
+            <th>Voice Recording</th>
+        </tr>
+        </thead>
+        <tbody id="medical-history-container">
+
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p>&copy; 2024 MediPath. All rights reserved.</p>
+</footer>
+
+<script>
+    function fetchMedicalHistory() {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    const medicalHistory = JSON.parse(xhr.responseText);
+                    populateMedicalHistory(medicalHistory);
+                } else {
+                    console.error('Error fetching medical history:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+        xhr.open("GET", "medicalhistory.php", true);
+        xhr.send();
+    }
+
+    function populateMedicalHistory(medicalHistory) {
+        const container = document.getElementById("medical-history-container");
+        medicalHistory.forEach(entry => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${entry.date_time}</td>
+                <td>${entry.symptom_description}</td>
+                <td>${entry.image_path ? `<img src="${entry.image_path}" alt="Symptom Image" class="symptom-image">` : ''}</td>
+                <td>${entry.video_path ? `<video controls><source src="${entry.video_path}" type="video/mp4">Your browser does not support the video tag.</video>` : ''}</td>
+                <td>${entry.voice_record_path ? `<audio controls><source src="${entry.voice_record_path}" type="audio/mpeg">Your browser does not support the audio element.</audio>` : ''}</td>
+            `;
+            container.appendChild(row);
+        });
+    }
+
+    window.onload = function () {
+        fetchMedicalHistory();
+    };
+
+    $(document).ready(function () {
+        const burgerIcon = document.getElementById("menu-toggle");
+        const menuItems = document.querySelector(".menu-items");
+        const navLinks = document.querySelectorAll(".menu-items a");
+
+        function toggleMenu() {
+            menuItems.classList.toggle("show-menu");
+        }
+
+        burgerIcon.addEventListener("click", toggleMenu);
+
+        function closeMenu() {
+            menuItems.classList.remove("show-menu");
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        function load_unseen_notification(view = '') {
+            $.ajax({
+                url: "getNotifications.php",
+                method: "POST",
+                data: { view: view },
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    if (data.unseen_notification > 0) {
+                        $('.notification-badge').html(data.unseen_notification).show();
+                    } else {
+                        $('.notification-badge').hide();
+                    }
+
+                    var dropdownMenu = $('.dropdown-menu');
+                    dropdownMenu.empty();
+
+                    if (data.notifications !== '') {
+                        dropdownMenu.html(data.notifications);
+                    } else {
+                        dropdownMenu.html('<div class="notification-item">No new notifications</div>');
+                    }
+
+                    dropdownMenu.parent().show();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = $('.dropdown-menu');
+            if (dropdownMenu.css('display') === 'none') {
+                load_unseen_notification();
+                dropdownMenu.show();
+            } else {
+                dropdownMenu.hide();
+
+                $.ajax({
+                    url: "getNotifications.php",
+                    method: "POST",
+                    data: { closeDropdown: true },
+                    dataType: "json",
+                    success: function(data) {
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        }
+
+        function handleNotificationClick() {
+
+        }
+
+        function markNotificationsAsRead() {
+
+        }
+
+        load_unseen_notification();
+        setInterval(load_unseen_notification, 5000);
+
+        $('.dropdown-toggle').click(toggleDropdown);
+
+        $('.dropdown-menu').on('click', '.notification-item', handleNotificationClick);
+
+        $('.dropdown-menu').on('hide.bs.dropdown', function() {
+            markNotificationsAsRead();
+        });
+    });
+
+</script>
+
+</body>
+</html>

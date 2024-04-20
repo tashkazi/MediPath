@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - List of Providers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        header {
+            background-color: rgba(44, 62, 80, 0.5);
+            color: #ECF0F1;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            z-index: 1500;
+        }
+
+        #logo img {
+            max-width: 25%;
+            padding: 5px;
+            height: auto;
+            margin-left: 30px;
+        }
+
+        #menu-container {
+            padding-top: 10px;
+            padding-right: 10px;
+            margin-left: 5px;
+            flex-grow: 1;
+        }
+
+        #menu-container ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        #menu-container li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        #menu-container a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 6px 15px;
+            white-space: nowrap;
+        }
+
+
+        footer {
+            background-color: rgba(44, 62, 80, 0.5);
+            color: #ECF0F1;
+            padding: 20px;
+            text-align: center;
+            width: 110%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .useful-links {
+            display: flex;
+            margin-bottom: 100px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .link-group {
+            flex-basis: 18%;
+            padding: 20px;
+            background-color: #ffffff;
+            text-align: left;
+            margin-left: 10px;
+            min-height: 200px;
+        }
+
+        .link-group h2 {
+            font-size: 20px;
+            text-align: left;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .link-group ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-group ul li {
+            margin-bottom: 10px;
+        }
+
+        .link-group ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .link-group ul li a:hover {
+            color: #555;
+        }
+
+
+        .contact-info i {
+            margin-right: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            text-decoration-color: #0a0a0a;
+            background-color: #fff;
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content li {
+            display: block;
+            padding: 8px 0;
+        }
+
+        .dropdown-content li a {
+            color: #0a0a0a;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content li a:hover {
+            color: #0a0a0a;
+        }
+
+        .providers-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+
+        .provider-info {
+            width: calc(20% - 20px);
+            margin-bottom: 20px;
+            background-color: rgba(128, 128, 128, 0.2);
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            margin-left: 80px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .provider-info h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .provider-info p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .provider-info button {
+            background-color: #2C3E50;
+            color: #fff;
+            border: none;
+            text-align: center;
+            border-radius: 3px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .burger-icon button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ECF0F1;
+            padding: 5px;
+        }
+
+        .provider-info button:hover {
+            background-color: #2980b9;
+        }
+
+        #search-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #search-form form {
+            display: flex;
+            align-items: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #search-form input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px 0 0 5px;
+            border: 1px solid #ccc;
+            border-right: none;
+        }
+
+        #search-form button {
+            padding: 10px;
+            border: none;
+            background-color: #2C3E50;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        #search-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .burger-icon button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ECF0F1;
+            padding: 5px;
+        }
+
+        .burger-icon {
+            display: none;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .burger-icon {
+                display: block;
+            }
+
+            .providers-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+
+            .provider-info {
+                margin-bottom: 20px;
+                background-color: rgba(128, 128, 128, 0.2);
+                border-radius: 5px;
+                padding: 50px;
+                width: 70%;
+                text-align: center;
+                box-sizing: border-box;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+
+            header {
+                padding: 10px 0;
+                margin-bottom: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .burger-icon {
+                display: block;
+            }
+
+            #search-form {
+                text-align: center;
+                margin-left: 50px;
+                margin-bottom: 20px;
+                width: 70%;
+            }
+
+            #menu-container ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                width: 80%;
+                right: 30px;
+                background-color: #ffffff;
+                border: 1px solid #0a0a0a;
+                padding: 10px;
+                z-index: 1;
+            }
+
+
+            #menu-container.show-menu ul {
+                display: block;
+            }
+
+
+            #menu-container ul li {
+                padding: 8px 0;
+            }
+
+            #menu-container ul li a {
+                color: black;
+                text-align: left;
+
+            }
+
+            .dropdown-content {
+                display: none;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown-content li a {
+                width: 100%;
+            }
+
+            .useful-links {
+                display: flex;
+                flex-wrap: wrap;
+                text-align: left;
+                justify-content: center;
+                gap: 10px;
+            }
+
+      .provider-list {margin-top: 60px;
+      margin-right: 50px;
+      padding: 20px;}
+
+
+            .useful-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .link-group {
+                flex: 1 1 auto;
+                text-align: left;
+            }
+
+            .link-group h2 {
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+
+            .link-group ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            .link-group ul li {
+                margin-bottom: 5px;
+            }
+
+        }
+    </style>
+
+<body>
+
+<header>
+    <div id="logo">
+        <img src="uploads/medi.png" alt="Logo">
+    </div>
+    <div id="menu-container">
+        <!-- Burger icon button -->
+        <div class="burger-icon">
+            <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Regular flex menu -->
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i></a></li>
+            <li><a href="services.html">Services</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-chevron-down"></i> Join our Team</a>
+                <ul class="dropdown-content">
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="providerRegistration.html">Provider Application</a></li>
+                    <li><a href="adminRegistration.html">Administration Application</a></li>
+                </ul>
+            </li>
+            <li><a href="doctors.html">Meet our Team</a></li>
+            <li><a href="aboutus.html">About MediPath</a></li>
+            <li><a href="login.html">Login/Register</a></li>
+        </ul>
+    </div>
+</header>
+
+<div id="search-form">
+    <h2>Search</h2>
+    <form action="getDoctors.php" method="GET">
+        <input type="text" id="searchTerm" name="query" placeholder="Search by name or specialization">
+
+        <button type="button" onclick="searchProviders()"><i class="fas fa-search"></i></button>
+
+    </form>
+</div>
+
+<div id="providerList" class="provider-list">
+    <h2> Meet our Team</h2>
+</div>
+
+<section class="useful-links">
+    <div class="link-group">
+        <h2>Services</h2>
+        <ul>
+            <li><a href="services.html">Primary Care Consultation</a></li>
+            <li><a href="services.html">Specialist Referrals</a></li>
+            <li><a href="services.html">Diagnostic Tests</a></li>
+            <li><a href="services.html">Telemedicine Visits</a></li>
+            <li><a href="services.html">Prescription Refills</a></li>
+            <li><a href="services.html">In-Person Visits</a></li>
+        </ul>
+    </div>
+
+
+    <div class="link-group">
+        <h2>Join our Team</h2>
+        <ul>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="providerRegistration.html">Provider Application</a></li>
+            <li><a href="adminRegistration.html">Administration Application</a></li>
+            <li><a href="#">Provider FAQs</a></li>
+        </ul>
+    </div>
+
+    <div class="link-group">
+        <h2>Meet our Team</h2>
+        <ul>
+            <li><a href="doctors.html">Get to Know our Staff</a></li>
+        </ul>
+    </div>
+
+
+    <div class="link-group">
+        <h2>About MediPath</h2>
+        <ul>
+            <li><a href="aboutus.html">Company Overview</a></li>
+            <li><a href="aboutus.html">Mission & Vision</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><i class="fas fa-phone"></i> <a href="tel:7789513966">778 951 3966</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:tashreeka.kazi@student.kpu.ca">tashreeka.kazi@student.kpu.ca</a></li>
+        </ul>
+    </div>
+
+    <div class="link-group">
+        <h2>Find us on:</h2>
+        <ul>
+            <li><i class="fab fa-instagram"></i> <a href="#">Instagram</a></li>
+            <li><i class="fab fa-facebook-f"></i> <a href="#">Facebook</a></li>
+            <li><i class="fab fa-twitter"></i> <a href="#">Twitter</a></li>
+        </ul>
+    </div>
+
+<footer>
+    <p>&copy; 2024 MediPath. All rights reserved.</p>
+</footer>
+
+<script>
+    let allProviders = [];
+    function fetchAndDisplayProviders() {
+        fetch('getDoctors.php')
+            .then(response => response.json())
+            .then(data => {
+                allProviders = data;
+                displayProviders(allProviders);
+            })
+            .catch(error => console.error('Error fetching providers:', error));
+    }
+
+    function displayProviders(providers) {
+        const providerList = document.getElementById('providerList');
+        providerList.innerHTML = '';
+        providers.forEach(provider => {
+            const providerDiv = document.createElement('div');
+            providerDiv.classList.add('provider-info');
+            providerDiv.innerHTML = `
+            <h2>${provider.first_name} ${provider.last_name}</h2>
+            <p>Specialization: ${provider.specialization}</p>
+            <button onclick="viewProfile(${provider.id})">View More</button>
+        `;
+            providerList.appendChild(providerDiv);
+        });
+    }
+
+    function viewProfile(providerId) {
+        window.location.href = `displayProviders.php?id=${providerId}`;
+    }
+
+    window.onload = fetchAndDisplayProviders;
+
+    function searchProviders() {
+        const searchTerm = document.getElementById('searchTerm').value.trim().toLowerCase();
+        const filteredProviders = allProviders.filter(provider =>
+            provider.first_name.toLowerCase().includes(searchTerm) ||
+            provider.last_name.toLowerCase().includes(searchTerm) ||
+            provider.specialization.toLowerCase().includes(searchTerm)
+        );
+        displayProviders(filteredProviders);
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const burgerIcon = document.getElementById("menu-toggle");
+        const menuContainer = document.getElementById("menu-container");
+        const dropdownContent = document.querySelector(".dropdown-content");
+
+        // Toggle menu when burger icon is clicked
+        burgerIcon.addEventListener("click", function() {
+            menuContainer.classList.toggle("show-menu");
+            // Toggle dropdown content visibility when the menu is clicked
+            dropdownContent.style.display = menuContainer.classList.contains("show-menu") ? "block" : "none";
+        });
+
+        // Close menu when clicked outside
+        document.addEventListener("click", function(event) {
+            if (!menuContainer.contains(event.target) && event.target !== burgerIcon) {
+                menuContainer.classList.remove("show-menu");
+                dropdownContent.style.display = "none"; // Hide dropdown content when menu is closed
+            }
+        });
+
+        // Show/hide dropdown content on click for mobile devices
+        const joinTeam = document.querySelector(".dropdown");
+
+        joinTeam.addEventListener("click", function(event) {
+            event.stopPropagation(); // Prevent menu from closing when clicking on the dropdown
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        });
+
+        // Hide dropdown content when clicking outside the dropdown
+        document.addEventListener("click", function(event) {
+            if (!joinTeam.contains(event.target) && event.target !== dropdownContent) {
+                dropdownContent.style.display = "none";
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

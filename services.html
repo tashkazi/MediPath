@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        header {
+            background-color: rgba(44, 62, 80, 0.5);
+            color: #ECF0F1;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            z-index: 1500;
+        }
+
+        #logo img {
+            max-width: 25%;
+            height: auto;
+            padding: 5px;
+            margin-left: 30px;
+        }
+
+        #menu-container {
+            padding-top: 10px;
+            padding-right: 10px;
+            margin-left: 5px;
+            flex-grow: 1;
+        }
+
+        #menu-container ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        #menu-container li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .useful-links {
+            display: flex;
+            margin-bottom: 100px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .link-group {
+            flex-basis: 18%;
+            padding: 20px;
+            background-color: #ffffff;
+            text-align: left;
+            margin-left: 10px;
+            min-height: 200px;
+        }
+
+        .link-group h2 {
+            font-size: 20px;
+            text-align: left;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .link-group ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-group ul li {
+            margin-bottom: 10px;
+        }
+
+        .link-group ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .link-group ul li a:hover {
+            color: #555;
+        }
+
+        #menu-container a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 6px 15px;
+            white-space: nowrap;
+        }
+
+        footer {
+            background-color: rgba(44, 62, 80, 0.5);
+            color: #ECF0F1;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            text-decoration-color: #0a0a0a;
+            background-color: #fff;
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content li {
+            display: block;
+            padding: 8px 0;
+        }
+
+        .dropdown-content li a {
+            color: #0a0a0a;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content li a:hover {
+            color: #0a0a0a;
+        }
+
+        .service-section {
+            position: relative;
+            flex-basis: calc(24.33% - 10px);
+            margin: 50px;
+            padding: 20px;
+            background-color: rgba(128, 128, 128, 0.2);
+            border-radius: 5px;
+            border-bottom: 2px solid #ddd;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .service-section:hover {
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .service-section i {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .burger-icon button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ECF0F1;
+            padding: 5px;
+        }
+
+        .burger-icon button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #ECF0F1;
+            padding: 5px;
+        }
+
+        .dropdown-content li a {
+            color: black;
+        }
+
+        .burger-icon {
+            display: none;
+        }
+
+        .dropdown-content {
+            display: none;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block; /* Remove this line */
+        }
+
+        @media only screen and (max-width: 768px) {
+            header {
+                padding: 10px 0;
+                margin-bottom: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            /* Show burger icon */
+            .burger-icon {
+                display: block;
+            }
+
+            /* Hide regular menu items */
+            #menu-container ul {
+                display: none; /* Hide the menu by default */
+                position: absolute;
+                top: 70px;
+                width: 80%;
+                right: 30px;
+                background-color: #ffffff;
+                border: 1px solid #0a0a0a;
+                padding: 10px;
+                z-index: 1;
+            }
+
+            /* Show menu items when the show-menu class is applied */
+            #menu-container.show-menu ul {
+                display: block; /* Show the menu when the show-menu class is applied */
+            }
+
+            /* Spacing for menu items */
+            #menu-container ul li {
+                padding: 8px 0;
+            }
+
+            #menu-container ul li a {
+                color: black;
+            }
+
+            .dropdown-content {
+                display: none;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown-content li a {
+                width: 100%;
+            }
+
+            .useful-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .link-group {
+                flex: 1 1 auto;
+                text-align: left;
+            }
+
+            .link-group h2 {
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+
+            .link-group ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            .link-group ul li {
+                margin-bottom: 5px;
+            }
+
+            .info-box:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div id="logo">
+        <img src="uploads/medi.png" alt="Logo">
+    </div>
+    <div id="menu-container">
+        <!-- Burger icon button -->
+        <div class="burger-icon">
+            <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Regular flex menu -->
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i></a></li>
+            <li><a href="services.html">Services</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-chevron-down"></i> Join our Team</a>
+                <ul class="dropdown-content">
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="providerRegistration.html">Provider Application</a></li>
+                    <li><a href="adminRegistration.html">Administration Application</a></li>
+                </ul>
+            </li>
+            <li><a href="doctors.html">Meet our Team</a></li>
+            <li><a href="aboutus.html">About MediPath</a></li>
+            <li><a href="login.html">Login/Register</a></li>
+        </ul>
+    </div>
+</header>
+
+
+<div class="service-container">
+    <section id="primary-care" class="service-section">
+        <i class="fas fa-stethoscope"></i>
+        <h2>Primary Care Consultation</h2>
+        <p>Our primary care consultation service offers comprehensive health assessments, routine screenings, and preventive care. Our experienced primary care physicians provide personalized medical advice, diagnosis, and treatment plans tailored to your individual needs.</p>
+    </section>
+
+    <section id="specialist-referrals" class="service-section">
+        <i class="fas fa-user-md"></i>
+        <h2>Specialist Referrals</h2>
+        <p>Our specialist referrals service facilitates timely referrals to ensure you receive the specialized care you need. Whether you need to see a cardiologist, dermatologist, or neurologist, we ensure seamless access to comprehensive care under one healthcare network.</p>
+    </section>
+
+    <section id="diagnostic-tests" class="service-section">
+        <i class="fas fa-flask"></i>
+        <h2>Diagnostic Tests</h2>
+        <p>Our diagnostic tests service includes a wide range of medical tests and screenings to assess your health status and identify any underlying medical conditions. From blood tests and imaging studies to electrocardiograms and pulmonary function tests, we provide accurate and timely results.</p>
+    </section>
+</div>
+
+<div class="service-container">
+    <section id="telemedicine-visits" class="service-section">
+        <i class="fas fa-video"></i>
+        <h2>Telemedicine Visits</h2>
+        <p>With our telemedicine visits service, you can consult with healthcare providers remotely from the comfort of your home. Whether you need medical advice, prescription refills, or follow-up care, our secure telemedicine platform ensures convenient access to healthcare services.</p>
+    </section>
+
+    <section id="prescription-refills" class="service-section">
+        <i class="fas fa-prescription-bottle"></i>
+        <h2>Prescription Refills</h2>
+        <p>Our prescription refills service allows you to conveniently request medication refills online. Simply submit your refill request through our patient portal, and our healthcare team will process it promptly to help you manage your health effectively.</p>
+    </section>
+
+    <section id="in-person-visits" class="service-section">
+        <i class="fas fa-hospital"></i>
+        <h2>In-Person Visits</h2>
+        <p>For patients requiring in-person medical evaluations and treatments, we offer in-person visits at our healthcare facilities. Whether you need physical examinations, vaccinations, or minor procedures, our dedicated medical staff provides compassionate care in a comfortable and welcoming environment.</p>
+    </section>
+</div>
+
+
+<section class="useful-links">
+    <div class="link-group">
+        <h2>Services</h2>
+        <ul>
+            <li><a href="services.html">Primary Care Consultation</a></li>
+            <li><a href="services.html">Specialist Referrals</a></li>
+            <li><a href="services.html">Diagnostic Tests</a></li>
+            <li><a href="services.html">Telemedicine Visits</a></li>
+            <li><a href="services.html">Prescription Refills</a></li>
+            <li><a href="services.html">In-Person Visits</a></li>
+        </ul>
+    </div>
+
+    <div class="link-group">
+        <h2>Join our Team</h2>
+        <ul>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="providerRegistration.html">Provider Application</a></li>
+            <li><a href="adminRegistration.html">Administration Application</a></li>
+            <li><a href="#">Provider FAQs</a></li>
+        </ul>
+    </div>
+
+    <div class="link-group">
+        <h2>Meet our Team</h2>
+        <ul>
+            <li><a href="doctors.html">Get to Know our Staff</a></li>
+        </ul>
+    </div>
+
+    <div class="link-group">
+        <h2>About MediPath</h2>
+        <ul>
+            <li><a href="aboutus.html">Company Overview</a></li>
+            <li><a href="aboutus.html">Mission & Vision</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><i class="fas fa-phone"></i> <a href="tel:7789513966">778 951 3966</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:tashreeka.kazi@student.kpu.ca">tashreeka.kazi@student.kpu.ca</a></li>
+        </ul>
+    </div>
+
+    <div class="link-group">
+        <h2>Find us on:</h2>
+        <ul>
+            <li><i class="fab fa-instagram"></i> <a href="#">Instagram</a></li>
+            <li><i class="fab fa-facebook-f"></i> <a href="#">Facebook</a></li>
+            <li><i class="fab fa-twitter"></i> <a href="#">Twitter</a></li>
+        </ul>
+    </div>
+</section>
+
+
+<footer>
+    <p>&copy; 2024 MediPath. All rights reserved.</p>
+</footer>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const burgerIcon = document.getElementById("menu-toggle");
+        const menuContainer = document.getElementById("menu-container");
+        const dropdownContent = document.querySelector(".dropdown-content");
+
+        // Toggle menu when burger icon is clicked
+        burgerIcon.addEventListener("click", function() {
+            menuContainer.classList.toggle("show-menu");
+            // Toggle dropdown content visibility when the menu is clicked
+            dropdownContent.style.display = menuContainer.classList.contains("show-menu") ? "block" : "none";
+        });
+
+        // Close menu when clicked outside
+        document.addEventListener("click", function(event) {
+            if (!menuContainer.contains(event.target) && event.target !== burgerIcon) {
+                menuContainer.classList.remove("show-menu");
+                dropdownContent.style.display = "none"; // Hide dropdown content when menu is closed
+            }
+        });
+
+        // Show/hide dropdown content on click for mobile devices
+        const joinTeam = document.querySelector(".dropdown");
+
+        joinTeam.addEventListener("click", function(event) {
+            event.stopPropagation(); // Prevent menu from closing when clicking on the dropdown
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        });
+
+        // Hide dropdown content when clicking outside the dropdown
+        document.addEventListener("click", function(event) {
+            if (!joinTeam.contains(event.target) && event.target !== dropdownContent) {
+                dropdownContent.style.display = "none";
+            }
+        });
+    });
+
+</script>
+
+
+
+</body>
+</html>

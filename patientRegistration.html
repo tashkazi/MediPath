@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - MediPath</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url('uploads/medi.jpeg') center/cover no-repeat fixed;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+
+    .registration-container {
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding-left: 80px;
+        padding-right: 80px;
+        box-sizing: border-box;
+        max-width: 800px;
+        width: 100%;
+        margin: 10px;
+        border: 1px solid #2C3E50;
+    }
+
+    .logo-container img {
+        width: 100%;
+        max-width: 150px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    form label,
+    form input,
+    form textarea,
+    form select {
+        width: 100%;
+        padding: 5px;
+        margin: 2px;
+    }
+
+    form button {
+        margin-top: 6px;
+        width: 50%;
+    }
+
+    .registration-container p {
+        margin-top: 5px;
+    }
+
+    form p {
+        margin-top: 5px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        h2{text-align: center;
+        }
+
+
+        .registration-container {
+            margin-top: 50px;
+            width: 95%;
+        }}
+
+</style>
+<body>
+<main>
+    <div class="background-image">
+        <div class="registration-container">
+            <h2> Patient Registration</h2>
+            <form id="patientRegistrationForm" action="register.php" method="post">
+                <label for="userType">Select User Type:</label>
+                <select id="userType" name="userType">
+                    <option value="patient">Patient</option>
+                </select>
+
+                <label for="phn">Personal Health Number:</label>
+                <input type="text" id="phn" name="phn" required>
+
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="Dob" id="dobLabel">Date of Birth:</label>
+                <input type="date" id="Dob" name="dob" required>
+
+                <label for="Address">Address:</label>
+                <textarea id="Address" name="address" rows="4" required></textarea>
+
+                <label for="PhoneNumber">Phone Number:</label>
+                <input type="tel" id="PhoneNumber" name="phoneNumber" required>
+
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="email" required>
+
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="password" required>
+
+                <button type="submit">Register</button>
+            </form>
+            <p>Already registered? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

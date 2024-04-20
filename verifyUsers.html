@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - Verify Users</title>
+    <!-- CSS styles -->
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 5px;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        #logo img {
+            max-width: 30%;
+            height: auto;
+            padding-left: 10px;
+        }
+
+        #menu-container {
+            padding-top: 30px;
+            padding-right: 20px;
+        }
+
+        #menu-container ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu-container li {
+            margin-left: 20px;
+        }
+
+        #menu-container a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .profile-container {
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        .user-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+        }
+
+        .user {
+            background-color: rgba(223, 223, 223, 0.62);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .user p {
+            margin: 5px 0;
+        }
+
+        .verify-button {
+            background-color: #2f4052;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+
+        .verify-button:hover {
+            background-color: #2f4052;
+        }
+
+        h1{ text-align: center}
+    </style>
+</head>
+<body>
+
+<header>
+    <div id="logo">
+        <img src="uploads/medi.png" alt="Logo">
+    </div>
+    <div id="menu-container">
+        <ul>
+            <li><a href="adminHomepage.html">Home</a></li>
+            <li><a href="adminProfile.html">My Profile</a></li>
+            <li><a href="verifyUsers.html">Verify Users</a></li>
+            <li><a href="users.html">User Profile Management</a></li>
+            <li><a href="addCareers.html">Careers</a></li>
+            <li><a href="adminLogin.html">Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="profile-container">
+    <h1>Pending Users</h1>
+    <div id="pendingUsers" class="user-grid">
+        <!-- Pending users will be displayed here -->
+    </div>
+
+    <h1>Active Users</h1>
+    <div id="activeUsers" class="user-grid">
+        <!-- Active users will be displayed here -->
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 MediPath. All rights reserved.</p>
+</footer>
+
+<script>
+    function fetchPendingUsers() {
+        fetch('getPendingUsers.php')
+            .then(response => response.json())
+            .then(data => {
+                displayPendingUsers(data);
+            })
+            .catch(error => console.error('Error fetching pending users:', error));
+    }
+
+    function displayPendingUsers(users) {
+        const pendingUsersContainer = document.getElementById('pendingUsers');
+        pendingUsersContainer.innerHTML = '';
+        users.forEach(user => {
+            const userDiv = document.createElement('div');
+            userDiv.classList.add('user');
+            userDiv.innerHTML = `
+                <p>Name: ${user.first_name} ${user.last_name}</p>
+                <p>Email: ${user.email}</p>
+                <p>User Type: ${user.userType}</p>
+                <p>Status: <span class="status">${user.approved}</span></p>
+                ${user.approved === 'pending' ? `<button class="verify-button" data-id="${user.id}" data-type="${user.userType}">Verify</button>` : ''}
+            `;
+            pendingUsersContainer.appendChild(userDiv);
+        });
+    }
+
+    function fetchActiveUsers() {
+        fetch('getActiveUsers.php')
+            .then(response => response.json())
+            .then(data => {
+                displayActiveUsers(data);
+            })
+            .catch(error => console.error('Error fetching active users:', error));
+    }
+
+    function displayActiveUsers(users) {
+        const activeUsersContainer = document.getElementById('activeUsers');
+        activeUsersContainer.innerHTML = '';
+        users.forEach(user => {
+            const userDiv = document.createElement('div');
+            userDiv.classList.add('user');
+            userDiv.innerHTML = `
+                <p>Name: ${user.first_name} ${user.last_name}</p>
+                <p>Email: ${user.email}</p>
+                <p>User Type: ${user.userType}</p>
+                <p>Status: <span class="status">${user.approved}</span></p>
+            `;
+            activeUsersContainer.appendChild(userDiv);
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('verify-button')) {
+            const userId = event.target.getAttribute('data-id');
+            const userType = event.target.getAttribute('data-type');
+            if (userId && userType) {
+                verifyUser(userId, userType);
+            } else {
+                console.error('User ID or user type parameter is missing');
+            }
+        }
+    });
+
+    function verifyUser(userId, userType) {
+        console.log('Verifying user with ID:', userId);
+        console.log('User Type:', userType);
+
+        if (userId && userType) {
+            const formData = new FormData();
+            formData.append('userId', userId);
+            formData.append('userType', userType);
+
+            fetch('verifyUser.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        console.log('User verified successfully.');
+
+                        alert(data.message);
+
+                        window.location.reload();
+                    } else {
+                        console.error('Failed to verify user:', data.error);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    };
+
+    window.onload = function() {
+        fetchPendingUsers();
+        fetchActiveUsers();
+    };
+</script>
+
+
+
+</body>
+</html>

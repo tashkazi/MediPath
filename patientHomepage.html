@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - Patient Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+   <style>
+
+
+       .notification-dropdown {
+           margin-right: 100px;
+           display: flex;
+           color: white;
+           align-items: center;
+       }
+
+       .notification-dropdown {
+           display: flex;
+           align-items: center;
+           cursor: pointer;
+       }
+
+       .notification-dropdown .dropdown-toggle i {
+           margin-right: 5px;
+       }
+
+
+       #menu-container {
+           display: flex;
+           align-items: center;
+       }
+
+       .menu-items {
+           display: flex;
+           align-items: center;
+       }
+
+       .notification-dropdown .dropdown-toggle i {
+           margin-right: 100px;
+       }
+
+       .notification-badge {
+           display: none;
+           position: absolute;
+           top: 25px;
+           right: 570px;
+           background-color: maroon;
+           color: white;
+           border-radius: 100%;
+           padding: 4px;
+           font-size: 5px;
+           min-width: 15px;
+           text-align: center;
+       }
+
+       .dropdown-menu {
+           display: none;
+           color: #0a0a0a;
+           position: absolute;
+           background-color: #fff;
+           border: 1px solid #0a0a0a;
+           padding: 10px;
+           min-width: 200px;
+           z-index: 1;
+           right: 7px;
+           text-align: center;
+       }
+
+       .dropdown-menu li {
+           text-align: left;
+           color: #0a0a0a;
+           list-style: none;
+       }
+
+       .dropdown-menu li a {
+           text-decoration: none;
+           color: #0a0a0a;
+       }
+
+       .dropdown-menu li a:hover {
+           background-color: #f4f4f4;
+       }
+
+       .dropdown-menu.show {
+           display: block;
+       }
+
+       .fc-event {
+           cursor: pointer;
+
+       }
+       body {
+           margin: 0;
+           padding: 130px 0;
+           position: relative;
+           font-family: "Times New Roman", serif;
+       }
+
+       header {
+           background-color: #2C3E50;
+           color: #ECF0F1;
+           padding: 5px;
+           margin: 0;
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           z-index: 1000;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+       }
+
+       footer {
+           background-color: #2C3E50;
+           color: #ECF0F1;
+           padding: 10px;
+           text-align: center;
+           width: 100%;
+           position: fixed;
+           bottom: 0;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           z-index: 1000;
+       }
+
+       #logo img {
+           max-width: 30%;
+           height: auto;
+           padding-left: 10px;
+       }
+
+       #menu-container {
+           display: flex;
+           align-items: center;
+       }
+
+       .menu-items {
+           margin-right: 10px;
+       }
+
+       .notification-dropdown {
+           margin-right: 10px;
+           display: flex;
+           align-items: center;
+       }
+
+       .notification-dropdown .dropdown-toggle {
+           display: flex;
+           right: -400px;
+           align-items: center;
+           cursor: pointer;
+       }
+
+       .notification-dropdown .dropdown-toggle i {
+           margin-right: 5px;
+           right: -400px;
+       }
+
+       .menu-items ul {
+           list-style: none;
+           display: flex;
+           justify-content: flex-end;
+           margin: 0;
+           padding: 0;
+       }
+
+       .menu-items li {
+           margin-left: 20px;
+       }
+
+       .menu-items a {
+           text-decoration: none;
+           color: #ECF0F1;
+           font-weight: bold;
+           font-size: 16px;
+       }
+
+       .modal {
+           display: none;
+           position: fixed;
+           z-index: 3;
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           overflow: auto;
+           background-color: rgba(0, 0, 0, 0.4);
+       }
+
+       .modal-content {
+           background-color: #fefefe;
+           padding: 20px;
+           border: 1px solid #ccc;
+           width: 40%;
+           border-radius: 5px;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           transform: translate(-50%, -50%);
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       }
+
+       .close {
+           color: #aaa;
+           float: right;
+           font-size: 24px;
+           font-weight: bold;
+           cursor: pointer;
+       }
+
+       .close:hover {
+           color: #333;
+       }
+
+       .modal-header {
+           padding-bottom: 10px;
+           border-bottom: 1px solid #ddd;
+       }
+
+       .modal-body {
+           padding: 20px 0;
+       }
+
+       .modal-footer {
+           padding-top: 10px;
+           text-align: right;
+       }
+
+       #appointmentForm label {
+           display: block;
+           margin-bottom: 10px;
+       }
+
+       #appointmentForm input[type="text"] {
+           width: calc(100% - 10px);
+           padding: 5px;
+           margin-bottom: 10px;
+       }
+
+       #appointmentForm button {
+           background-color: #3fbcec;
+           color: #fff;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+
+       .calendar-container {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           overflow-y: auto;
+       }
+
+       #patientCalendar {
+           max-width: 95%;
+           max-height: 50%;
+       }
+
+       .not-feeling-well {
+           background-color: #f3ffff;
+           color: #30697c;
+           width: 100%;
+           margin-top: 0;
+           padding: 10px;
+           top: 40px;
+           margin-bottom: 20px;
+           text-align: center;
+       }
+
+       .record-symptoms-btn, .book-appointment-btn {
+           background-color: #3fbcec;
+           color: #fff;
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           margin-top: 10px;
+           margin-right: 10px;
+       }
+
+       .dropdown-container {
+           position: relative;
+           display: inline-block;
+           z-index: 2;
+       }
+
+       .dropdown-content {
+           display: none;
+           position: absolute;
+           background-color: #333;
+           color: #fff;
+           min-width: 200px;
+           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+           z-index: 2;
+       }
+
+       .dropdown-container:hover .dropdown-content {
+           display: block;
+       }
+
+       .dropdown-content a {
+           color: #fff;
+           padding: 12px 16px;
+           text-decoration: none;
+           display: block;
+       }
+
+       .dropdown-content a:hover {
+           background-color: #ddd;
+           color: #333;
+       }
+
+       .dim-overlay {
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(0, 0, 0, 0.3);
+           z-index: 1;
+           display: none;
+       }
+
+       .calendar-container-mini {
+           width: 500px;
+           margin: 10px auto;
+           color: #30697c;
+           background: #2f4052;
+           position: absolute;
+           top: 60px;
+           left: 30%;
+           transform: translateX(-50%);
+       }
+
+       #timeSlotsDropdown {
+           width: 100%;
+           padding: 10px;
+           margin-bottom: 10px;
+           position: absolute;
+           top: 0;
+           z-index: 999;
+       }
+
+       .burger-icon button {
+           background: none;
+           border: none;
+           cursor: pointer;
+           font-size: 20px;
+           color: #ECF0F1;
+           padding: 5px;
+       }
+
+       .burger-icon {
+           display: none;
+       }
+
+       @media only screen and (max-width: 768px) {
+
+           header {
+               padding: 10px 0;
+               margin-bottom: 60px;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+           }
+
+           .calendar-container-mini {
+               background-color: #2f4052;
+               width: 100%;
+               max-width: 700px;
+           }
+
+           .calendar-container {
+               margin-top: 100px;
+               margin-bottom: -500px;
+               padding-bottom: -400px;
+           }
+
+           .burger-icon {
+               display: block;
+           }
+
+           .menu-items {
+               display: none;
+           }
+
+           #menu-toggle:checked + .menu-items {
+               display: block;
+           }
+           .burger-icon {
+               display: block;
+           }
+
+           .nav-menu {
+               display: none;
+           }
+
+           .menu-items {
+               position: absolute;
+               top: 100%;
+               right: 0;
+               background-color: #2C3E50;
+               border: 1px solid #0a0a0a;
+               padding: 10px;
+               z-index: 1;
+           }
+
+           .menu-items.show-menu {
+               display: block;
+           }
+
+           #appointmentModal {
+               width: 95%;
+               max-width: 600px;
+               margin: 0 auto;
+           }
+
+           .modal-content {
+               width: 100%;
+           }
+
+           #appointmentForm {
+               width: 100%;
+           }
+
+           #appointmentForm input {
+               width: calc(100% - 20px);
+
+           }
+
+           .notification-badge {
+
+               right: 45px;
+               top: 10px;
+
+           }
+
+
+
+       }
+
+   </style>
+<body>
+
+<header>
+    <div id="logo">
+        <img src="uploads/medi.png" alt="Logo">
+    </div>
+    <div class="notification-dropdown">
+        <div class="dropdown-toggle"><i class="fas fa-bell"></i> <span class="notification-badge">0</span></div>
+        <div class="dropdown-menu">
+
+        </div>
+    </div>
+    <div class="burger-icon">
+        <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="menu-items">
+        <ul>
+            <li><a href="patientHomepage.html">Home</a></li>
+            <li><a href="patientProfile.html">My Profile</a></li>
+            <li><a href="medicalhistory.html">Medical History</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+
+
+<div class="not-feeling-well" id="appointmentSection">
+    <p>Not feeling well? Let your provider know.</p>
+    <div class="dropdown-container" id="providerDropdown">
+        <label for="searchInput"></label><input type="text" id="searchInput" onkeyup="searchDoctors()"
+                                                placeholder="Search For your Provider..."
+                                                style="display:none; width: 200px"><div class="dropdown-content" id="doctorDropdown">
+    </div>
+        <div class="dropdown-content" id="appointmentDropdown">
+        </div>
+
+        <div id="selectDateHeading" style="display: none;">
+            <h2>Select a Date</h2>
+        </div>
+        <button id="nextButton" style="display: none;">Next</button>
+    </div>
+    <button class="book-appointment-btn" onclick="showDoctors()">Book Appointment</button>
+    <button class="record-symptoms-btn"
+            onclick="console.log('Record Symptoms clicked'); window.location.href='addsymptoms.html'">Record
+        Symptoms
+    </button>
+</div>
+
+<div id="timeSlotsContainer"></div>
+
+<div id="bookingMessage"></div>
+
+<div class="dim-overlay"></div>
+
+<div class="calendar-container">
+    <div id="patientCalendar"></div>
+    </div>
+
+
+<div id="appointmentModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="appointmentForm">
+            <label for="doctorName">Doctor's Name:</label>
+            <input type="text" id="doctorName" name="doctorName" readonly>
+            <label for="appointmentDate">Appointment Date:</label>
+            <input type="text" id="appointmentDate" name="appointmentDate" readonly>
+            <label for="appointmentTime">Appointment Time:</label>
+            <input type="text" id="appointmentTime" name="appointmentTime" readonly>
+            <button type="submit">Confirm Appointment</button>
+        </form>
+    </div>
+</div>
+
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Your action was successful!</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 MediPath. All rights reserved.</p>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<script>
+    var selectedProviderId;
+        var selectedDoctorName;
+
+        function showDoctors() {
+            $('.book-appointment-btn, .record-symptoms-btn').hide();
+            $('.dim-overlay').show();
+            $('#searchInput').show();
+            $('#providerDropdown').find('span').text('Choose a Date');
+            $('#doctorDropdown').empty();
+            fetchProviders();
+        }
+
+        function fetchProviders() {
+            $.ajax({
+                url: 'getProviders.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var doctorDropdown = $('#doctorDropdown');
+                    data.forEach(function (provider) {
+                        var option = $('<a>', {
+                            text: "Dr. " + provider.full_name + " (" + provider.specialization + ")",
+                            href: '#',
+                            'data-provider-id': provider.id,
+                            'data-provider-name': provider.full_name
+                        }).on('click', function () {
+                            selectedProviderId = provider.id;
+                            selectedDoctorName = provider.full_name;
+                            selectDoctor(provider.id);
+                        });
+                        doctorDropdown.append(option);
+                    });
+                    $('.dropdown-container').addClass('show');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching providers:', error);
+                }
+            });
+        }
+
+        function selectDoctor(providerId) {
+            $('#doctorDropdown').hide();
+            $('#searchInput').hide();
+            $('#selectDateHeading').show();
+            showCalendar(providerId);
+        }
+
+        var selectedDate;
+
+        function showCalendar(providerId) {
+            var calendarContainer = $('<div>').addClass('calendar-container-mini');
+            var calendar = $('<div>').attr('id', 'miniCalendar');
+            calendarContainer.append(calendar);
+            $('#appointmentDropdown').append(calendarContainer);
+            calendar.fullCalendar({
+                header: {
+                    left: 'prev',
+                    center: 'title',
+                    right: 'next'
+                },
+                viewRender: function (view, element) {
+                    var title = $('<h2>').text('Select a Date').css('text-align', 'center');
+                    element.find('.fc-center').empty().append(title);
+                },
+                dayClick: function (date, jsEvent, view, resourceObj) {
+                    selectedDate = date.format();
+                    var isoDate = date.format('YYYY-MM-DD');
+                    $('#appointmentDate').val(isoDate);
+                    fetchAvailableTimeSlots(providerId, isoDate);
+                },
+                eventRender: function (event, element) {
+                    element.attr('data-toggle', 'popover');
+                    element.attr('title', event.title);
+                    element.attr('data-content', event.description);
+                    element.attr('data-placement', 'auto');
+                    element.attr('data-html', true); // Allow HTML content in popover
+                }
+            });
+
+            // Initialize popovers
+            $('[data-toggle="popover"]').popover();
+        }
+
+
+
+        function fetchAvailableTimeSlots(providerId, selectedDate) {
+            $.ajax({
+                url: 'getAppointmentDates.php',
+                type: 'GET',
+                data: {providerId: providerId, selectedDate: selectedDate},
+                dataType: 'json',
+                success: function (data) {
+                    if (data && data.length > 0) {
+                        if (data.error) {
+                            console.error('Error fetching available time slots:', data.error);
+                            return;
+                        }
+                        showTimeSlotDropdown(data);
+                        var dayCells = $('#miniCalendar .fc-day[data-date="' + selectedDate + '"]');
+                        dayCells.css('background-color', 'green');
+                    } else {
+                        alert('No available time slots for the selected date.');
+                        var dayCells = $('#miniCalendar .fc-day[data-date="' + selectedDate + '"]');
+                        dayCells.css('background-color', 'red');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching available time slots:', error);
+                }
+            });
+        }
+
+        function showTimeSlotDropdown(timeSlots) {
+            $('#timeSlotsDropdown').remove();
+            var dropdown = $('<select>').attr('id', 'timeSlotsDropdown');
+            dropdown.append($('<option>').text('Select a Time').attr('value', ''));
+
+            timeSlots.forEach(function (timeSlot) {
+                dropdown.append($('<option>').text(timeSlot).attr('value', timeSlot));
+            });
+            $('#miniCalendar').append(dropdown);
+
+
+            $('#timeSlotsDropdown').on('change', function () {
+                var timeSlot = $(this).val();
+                if (timeSlot !== '') {
+                    showAppointmentForm(selectedDoctorName, timeSlot);
+                }
+            });
+        }
+
+        function showAppointmentForm(selectedDoctorName, timeSlot) {
+
+            if ($('#appointmentModal').is(':visible')) {
+                return;
+            }
+
+            $('#appointmentModal').show();
+            $('#doctorName').val(selectedDoctorName);
+
+
+            var selectedDate = $('#appointmentDate').val();
+            if (!selectedDate) {
+
+                selectedDate = $('#miniCalendar').fullCalendar('getDate').format('YYYY-MM-DD');
+                $('#appointmentDate').val(selectedDate);
+            }
+
+            $('#appointmentTime').val(timeSlot);
+        }
+
+        $('#appointmentModal').on('submit', '#appointmentForm', function (e) {
+            e.preventDefault();
+            console.log('Form submitted');
+
+            var doctorName = $('#doctorName').val();
+            var appointmentDate = $('#appointmentDate').val();
+            var appointmentTime = $('#appointmentTime').val();
+
+            $.ajax({
+                url: 'addAppointment.php',
+                type: 'POST',
+                data: {
+                    doctorName: doctorName,
+                    appointmentDate: appointmentDate,
+                    appointmentTime: appointmentTime
+                },
+                success: function (response) {
+                    console.log('Appointment saved successfully:', response);
+                    $('#successModal').show(); // Show success modal
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error saving appointment:', error);
+                }
+            });
+        });
+
+        $('#successModal').on('click', '.close', function () {
+            console.log('Success modal closed');
+            window.location.href = 'patientHomepage.html';
+        });
+
+
+        function load_unseen_notification(view = '') {
+            $.ajax({
+                url: "getNotifications.php",
+                method: "POST",
+                data: { view: view },
+                dataType: "json",
+                success: function(data) {
+                    if (data.unseen_notification > 0) {
+                        $('.notification-badge').html(data.unseen_notification).show();
+                    } else {
+                        $('.notification-badge').hide();
+                    }
+
+                    var dropdownMenu = $('.dropdown-menu');
+                    dropdownMenu.empty();
+                    if (data.notifications !== '') {
+                        dropdownMenu.html(data.notifications);
+                    } else {
+                        dropdownMenu.html('<div class="notification-item">No new notifications</div>');
+                    }
+                    dropdownMenu.parent().show();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        function toggleDropdown() {
+            var dropdownMenu = $('.dropdown-menu');
+            if (dropdownMenu.css('display') === 'none') {
+                load_unseen_notification();
+                dropdownMenu.show();
+            } else {
+                dropdownMenu.hide();
+                $.ajax({
+                    url: "getNotifications.php",
+                    method: "POST",
+                    data: { closeDropdown: true },
+                    dataType: "json",
+                    success: function(data) {},
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        }
+
+        function handleNotificationClick() {
+
+        }
+
+        function markNotificationsAsRead() {
+
+        }
+
+        load_unseen_notification();
+        setInterval(load_unseen_notification, 5000);
+
+        $('.dropdown-toggle').click(toggleDropdown);
+
+        $('.dropdown-menu').on('click', '.notification-item', handleNotificationClick);
+
+        $('.dropdown-menu').on('hide.bs.dropdown', function() {
+            markNotificationsAsRead();
+        });
+
+        fetchProviders();
+
+        $(document).ready(function () {
+            const burgerIcon = document.getElementById("menu-toggle");
+            const menuItems = document.querySelector(".menu-items");
+            const navLinks = document.querySelectorAll(".menu-items a");
+
+            function toggleMenu() {
+                menuItems.classList.toggle("show-menu");
+            }
+
+            burgerIcon.addEventListener("click", toggleMenu);
+
+            function closeMenu() {
+                menuItems.classList.remove("show-menu");
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", closeMenu);
+
+    });
+            var loggedInUserId = '{{USER_ID}}';
+            if (loggedInUserId !== null) {
+                $('#patientCalendar').fullCalendar({
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    events: function(start, end, timezone, callback) {
+                        // Fetch appointments from the server
+                        $.ajax({
+                            url: 'getAppointment.php',
+                            type: 'GET',
+                            data: {
+                                userId: loggedInUserId
+                            },
+                            success: function(response) {
+                                // Check if the response is valid
+                                if (!response || response.error) {
+                                    console.error('Error fetching or empty response from server.');
+                                    return;
+                                }
+                                // Call the callback function with the fetched appointments
+                                callback(response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error fetching appointments:', error);
+                            }
+                        });
+                    },
+                    eventMouseEnter: function(mouseLeaveInfo) {
+                        var myTarget = $(mouseLeaveInfo.el);
+                        if (!myTarget.hasClass('fc-event')) {
+                            myTarget = myTarget.closest('.fc-event');
+                        }
+                        var oldch = myTarget.height();
+                        myTarget.data("myheight", oldch);
+                        var innerelem = myTarget.find(".fc-content").first();
+                        innerelem.css('max-height', 'none');
+                        innerelem.css('white-space', 'break-spaces');
+                        var ih = innerelem.height();
+                        if (oldch < ih) {
+                            myTarget.css('height', ih + 'px');
+                        }
+                    },
+                    eventMouseLeave: function(mouseLeaveInfo) {
+                        var myTarget = $(mouseLeaveInfo.el);
+                        if (!myTarget.hasClass('fc-event')) {
+                            myTarget = myTarget.closest('.fc-event');
+                        }
+                        var oldch = myTarget.data("myheight");
+                        var innerelem = myTarget.find(".fc-content").first();
+                        myTarget.css('height', oldch + 'px');
+                        innerelem.css('white-space', 'nowrap');
+                        innerelem.css('max-height', '100%');
+                    }
+                });
+            } else {
+                console.error('User ID not available. Please make sure the user is logged in.');
+            }
+        });
+</script>
+        </body>
+</html>

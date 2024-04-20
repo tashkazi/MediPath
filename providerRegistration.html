@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Registration - MediPath</title>
+    <link rel="stylesheet" href="patient.css">
+
+
+</head>
+<body>
+<main>
+    <div class="background-image">
+        <div class="registration-container">
+            <form id="providerRegistrationForm" action="register.php" method="post">
+                <h2>Provider Registration</h2>
+                <label for="userType">Select User Type:</label>
+                <select id="userType" name="userType">
+                    <option value="provider">Provider</option>
+                </select>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="Dob" id="dobLabel">Date of Birth:</label>
+                <input type="date" id="Dob" name="dob" required>
+
+                <label for="Address">Address:</label>
+                <textarea id="Address" name="address" rows="4" required></textarea>
+
+                <label for="PhoneNumber">Phone Number:</label>
+                <input type="tel" id="PhoneNumber" name="phoneNumber" required>
+
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="email" required>
+
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="password" required>
+
+                <label for="MINC">Medical Identification Number for Canada (MINC):</label>
+                <input type="text" id="MINC" name="MINC" required>
+
+                <label for="education">Education (Degree, Institution, Year):</label>
+                <textarea id="education" name="education" rows="4"></textarea>
+
+                <label for="specialization">Specialization:</label>
+                <input type="text" id="specialization" name="specialization">
+
+                <label for="clinicAffiliation">Clinic/Hospital Affiliation:</label>
+                <input type="text" id="clinicAffiliation" name="clinicAffiliation">
+
+                <label for="experience">Years of Experience:</label>
+                <input type="number" id="experience" name="experience">
+
+                <label for="certifications">Certifications or Credentials:</label>
+                <textarea id="certifications" name="certifications" rows="4"></textarea>
+
+                <label for="professionalMembership">Professional Membership:</label>
+                <input type="text" id="professionalMembership" name="professionalMembership">
+
+
+                <button type="submit">Register</button>
+            </form>
+            <p>Already registered? <a href="providerLogin.html">Login</a></p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

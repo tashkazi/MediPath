@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediPath - Provider Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 5px;
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        footer {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+
+        #logo img {
+            max-width: 30%;
+            height: auto;
+            padding-left: 10px;
+        }
+
+        #menu-container {
+            padding-top: 30px;
+            padding-right: 20px;
+        }
+
+        #menu-container ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menu-container li {
+            margin-left: 20px;
+        }
+
+        #menu-container a {
+            text-decoration: none;
+            color: #ECF0F1;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        #appointmentModal {
+            display: none;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 10px;
+            border: 1px solid #0a0a0a;
+            width: 60%;
+            text-align: center;
+        }
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content form {
+            display: flex;
+            width: 70%;
+            margin-left: 50px;
+            flex-direction: column;
+        }
+
+        .modal-content form label, input {
+            text-align: left;
+            display: block;
+            width: 90%;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .calendar-container {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-top: 60px;
+            margin-bottom: 90px;
+            overflow-y: auto;
+            padding-top: 10px;
+        }
+
+        #calendar {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            top: 80px;
+            border: #24292e;
+            transform: translateX(-50%);
+            width: 50%;
+            max-width: 500px;
+            height: 100%;
+            overflow: auto;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #888;
+            width: 100%;
+        }
+
+        .close {
+            color: #aaa;
+            position: fixed;
+            top:100px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #patientResults {
+            display: none;
+
+        }
+
+        #patientDropdown {
+            position: absolute;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 60px;
+            width: 40%;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            z-index: 1000;
+            display: none;
+        }
+
+        #patientDropdown.active {
+            display: block;
+        }
+
+        #patientDropdown div {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #patientDropdown div:hover {
+            background-color: #f0f0f0;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div id="logo">
+        <img src="uploads/medi.png" alt="Logo">
+    </div>
+    <div id="menu-container">
+        <ul>
+            <li><a href="providerHomepage.html">Home</a></li>
+            <li><a href="providerProfile.html">My Profile</a></li>
+            <li><a href="providertNotifications.html">Notifications</a></li>
+            <li><a href="patients.html">Patients</a></li>
+            <li><a href="providerLogin.html">Logout</a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="calendar-container">
+    <div id="calendar"></div>
+</div>
+
+<div id="appointmentModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Book Appointment</h2>
+        <form id="appointmentForm">
+
+            <label for="patientSearch">Search Patient by PHN:</label>
+            <input type="text" id="patientSearch" placeholder="Search PHN..." onkeyup="searchPatients()">
+            <div id="patientDropdown"></div>
+
+            <div id="patientResults"></div>
+            <input type="hidden" id="selectedPatientId" name="patientId">
+
+            <div class="form-group">
+                <label for="appointmentDate">Appointment Date:</label>
+                <input type="date" id="appointmentDate" name="appointmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Appointment Time:</label>
+                <input type="time" id="appointmentTime" name="appointmentTime" required>
+            </div>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+</div>
+
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <h2>Appointment Successfully Booked</h2>
+        <button id="okButton">OK</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 MediPath. All rights reserved.</p>
+</footer>
+
+
+    <script>
+        $(document).ready(function () {
+        var selectedStartTime;
+        var selectedEndTime;
+        var selectedPatientId;
+        var selectedProviderId;
+
+        var loggedInUserId = '{{USER_ID}}';
+
+        if (loggedInUserId !== null) {
+        $.ajax({
+        url: 'getProviderAppointments.php',
+        method: 'GET',
+        data: {
+        userId: loggedInUserId
+    },
+        success: function (response) {
+        if (!response || response.error) {
+        console.error('Error fetching or empty response from server.');
+        return;
+    }
+
+        var appointments = response || [];
+
+        $('#calendar').fullCalendar('renderEvents', appointments, true);
+    },
+        error: function () {
+        console.error('Error fetching appointments.');
+    }
+    });
+    } else {
+        console.error('User ID not available. Please make sure the user is logged in.');
+    }
+
+        $('#calendar').fullCalendar({
+        header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'agendaWeek'
+    },
+        defaultView: 'agendaWeek',
+        allDaySlot: false,
+        slotDuration: '00:15:00',
+        scrollTime: '09:00:00',
+        minTime: '09:00:00',
+        maxTime: '18:00:00',
+        businessHours: {
+        dow: [1, 2, 3, 4, 5],
+        start: '09:00',
+        end: '18:00'
+    },
+        weekends: false,
+        height: 'auto',
+        defaultDate: moment().startOf('week'),
+        slotLabelFormat: 'h:mm A',
+        slotLabelInterval: '00:15:00',
+        eventRender: function (event, element) {
+        if (!event.title) {
+        element.css('background-color', 'lightpink');
+        element.css('pointer-events', 'none');
+    }
+    },
+        dayClick: function (date, jsEvent, view) {
+        if (!$(this).hasClass('fc-slot-occupied')) {
+        $('#calendar').fullCalendar('renderEvent', {
+        title: 'Book Appointment',
+        start: date,
+        end: date.clone().add(15, 'minutes'),
+        allDay: false,
+        className: 'book-appointment-event'
+    });
+        $('#calendar').fullCalendar('unselect');
+
+        $('#appointmentModal').modal('show');
+        selectedStartTime = date.format('YYYY-MM-DD HH:mm:ss');
+        selectedEndTime = date.clone().add(15, 'minutes').format('YYYY-MM-DD HH:mm:ss');
+
+        $('#appointmentDate').val(moment(selectedStartTime).format('YYYY-MM-DD'));
+        $('#appointmentTime').val(moment(selectedStartTime).format('HH:mm'));
+    } else {
+        alert('This time slot is unavailable. Please choose another.');
+    }
+    }
+    });
+
+        $('.close').on('click', function () {
+        $('#appointmentModal').modal('hide');
+    });
+
+            $('#appointmentForm').on('submit', function (event) {
+                event.preventDefault();
+
+
+                var patientId = $('#selectedPatientId').val();
+
+
+                var appointmentDate = $('#appointmentDate').val();
+                var appointmentTime = $('#appointmentTime').val();
+
+                if (patientId === "") {
+                    console.error('Patient ID is required');
+                    return;
+                }
+
+                $.ajax({
+                    url: 'bookAppointment.php',
+                    type: 'POST',
+                    data: {
+                        patientId: patientId,
+                        appointmentDate: appointmentDate,
+                        appointmentTime: appointmentTime
+                    },
+                    success: function (response) {
+                        console.log('Appointment saved successfully:', response);
+                        $('#appointmentModal').modal('hide');
+                        showSuccessModal();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error saving appointment:', error);
+                    }
+                });
+            });
+
+            function showSuccessModal() {
+        $('#successModal').modal('show');
+    }
+
+        $('#okButton').on('click', function () {
+        window.location.href = 'providerHomepage.html';
+    });
+    });
+
+        $('#patientSearch').on('input', function () {
+            searchPatients();
+        });
+
+        function searchPatients() {
+            var searchTerm = $('#patientSearch').val();
+
+            $.ajax({
+                url: 'searchPatients.php',
+                method: 'GET',
+                data: {
+                    searchTerm: searchTerm
+                },
+                success: function(response) {
+                    var dropdown = $('#patientDropdown');
+                    dropdown.empty();
+
+                    if (response.length > 0) {
+                        var patients = JSON.parse(response);
+
+                        patients.forEach(function(patient) {
+                            dropdown.append('<div onclick="selectPatient(' + patient.id + ', \'' + patient.full_name + '\')">' + patient.full_name + '</div>');
+                        });
+
+                        dropdown.addClass('active');
+                    } else {
+                        dropdown.removeClass('active');
+                    }
+                },
+                error: function() {
+                    console.error('Error searching patients.');
+                }
+            });
+        }
+
+        function selectPatient(patientId, patientName) {
+            $('#patientSearch').val(patientName);
+            $('#selectedPatientId').val(patientId);
+            $('#patientDropdown').removeClass('active');
+        }
+
+    </script>
+
+</body>
+</html>

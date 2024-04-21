@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="673f960a-cd82-4ec7-92fd-3b13b7c55ed2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MediPath.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addCareers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getActiveUsers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getNotifications.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getPendingUsers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/updateAdmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/updateProfile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/updateProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/verifyUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/verifyUsers.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable path="composer" />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Python Script" />
+        <option value="tsconfig.json" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/cli-10.2.5/package.json" />
+    <dismissed value="$PROJECT_DIR$/cli-10.2.5/workspaces/arborist/test/fixtures/selflink/package.json" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProblemsViewState">
+    <option name="proportion" value="0.14607558" />
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2ZElujYi96fhE8x43nwrbRLwqdw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.messages.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.calendar.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;21.4.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.12.4&quot;,
+    &quot;js.last.introduce.type&quot;: &quot;VAR&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/RealEstateWebApp/src/web/realtorprofile.html&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.5\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\MediPath" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="673f960a-cd82-4ec7-92fd-3b13b7c55ed2" name="Changes" comment="" />
+      <created>1701995345149</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701995345149</updated>
+      <workItem from="1701995346166" duration="1000" />
+      <workItem from="1701995676873" duration="3211000" />
+      <workItem from="1702000881130" duration="272000" />
+      <workItem from="1702001209371" duration="7957000" />
+      <workItem from="1702089785627" duration="6840000" />
+      <workItem from="1702098796020" duration="6218000" />
+      <workItem from="1702105483408" duration="1390000" />
+      <workItem from="1702107001173" duration="10377000" />
+      <workItem from="1702180488086" duration="18634000" />
+      <workItem from="1702687797754" duration="1372000" />
+      <workItem from="1705458824426" duration="614000" />
+      <workItem from="1706671061997" duration="572000" />
+      <workItem from="1706671825703" duration="263000" />
+      <workItem from="1711274965340" duration="237000" />
+      <workItem from="1711278660937" duration="4285000" />
+      <workItem from="1711440110954" duration="1848000" />
+      <workItem from="1711441993337" duration="78000" />
+      <workItem from="1711442245310" duration="23394000" />
+      <workItem from="1711466833120" duration="42820000" />
+      <workItem from="1711628710842" duration="51786000" />
+      <workItem from="1711877914138" duration="34256000" />
+      <workItem from="1711946985868" duration="78024000" />
+      <workItem from="1712083898862" duration="20784000" />
+      <workItem from="1712111943887" duration="55605000" />
+      <workItem from="1712233478601" duration="15639000" />
+      <workItem from="1712252674258" duration="102000" />
+      <workItem from="1712252894582" duration="18165000" />
+      <workItem from="1712305743041" duration="51220000" />
+      <workItem from="1712391887574" duration="17855000" />
+      <workItem from="1712567961480" duration="55889000" />
+      <workItem from="1712702456344" duration="7273000" />
+      <workItem from="1712881961051" duration="83420000" />
+      <workItem from="1713494076468" duration="21602000" />
+      <workItem from="1713638690026" duration="1600000" />
+      <workItem from="1713651365665" duration="5057000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/Pprofile.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/addAppointment.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/addsymptoms.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/adminBook.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/adminProfile.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/bookAppointment.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/deleteUsers.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/displayProviders.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getAppointment.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getAppointmentDates.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getDoctors.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getNotifications.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getPatients.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getProviderAppointments.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/getProviders.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/login.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/manageUsers.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/medicalhistory.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/myprofile.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/patients.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/profile.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/register.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/searchPatients.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/searchProviders.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/updateProfile.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/updateProvider.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/uploads/messages.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/viewMedicalHistory.php" dialect="GenericSQL" />
+  </component>
+</project>

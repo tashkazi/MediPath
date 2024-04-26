@@ -392,21 +392,21 @@
 
         burgerIcon.addEventListener("click", function() {
             menuContainer.classList.toggle("show-menu");
-            // Toggle dropdown content visibility when the menu is clicked
+           
             dropdownContent.style.display = menuContainer.classList.contains("show-menu") ? "block" : "none";
         });
 
         document.addEventListener("click", function(event) {
             if (!menuContainer.contains(event.target) && event.target !== burgerIcon) {
                 menuContainer.classList.remove("show-menu");
-                dropdownContent.style.display = "none"; // Hide dropdown content when menu is closed
+                dropdownContent.style.display = "none"; 
             }
         });
 
         const joinTeam = document.querySelector(".dropdown");
 
         joinTeam.addEventListener("click", function(event) {
-            event.stopPropagation(); // Prevent menu from closing when clicking on the dropdown
+            event.stopPropagation(); 
             dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
         });
 

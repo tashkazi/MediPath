@@ -480,15 +480,15 @@
     }
 
     function displayDoctorCalendar(doctorData) {
-        // Clear existing calendar events
+        
         $('#calendar').fullCalendar('removeEvents');
 
-        // Display doctor calendar with available appointments
+ 
         $('#calendar').fullCalendar({
-            // FullCalendar options
+   
         });
 
-        // Fetch and display doctor appointments
+    
         fetchDoctorAppointments(doctorData.id);
     }
 
@@ -499,14 +499,14 @@
         })
             .then(response => response.json())
             .then(data => {
-                // Display doctor appointments on calendar
+
                 displayDoctorAppointments(data);
             })
             .catch(error => console.error('Error fetching doctor appointments:', error));
     }
 
     function displayDoctorAppointments(appointments) {
-        // Display doctor appointments on calendar
+   
         appointments.forEach(appointment => {
             $('#calendar').fullCalendar('renderEvent', {
                 title: 'Doctor Appointment',
@@ -519,7 +519,7 @@
     }
 
         $(document).ready(function () {
-        // Fetch all doctors initially
+    
         fetchAllDoctors();
     });
 
@@ -527,7 +527,7 @@
         fetch('getAllDoctors.php')
             .then(response => response.json())
             .then(data => {
-                // Populate dropdown list with doctors
+          
                 populateDoctorList(data);
             })
             .catch(error => console.error('Error fetching doctors:', error));
@@ -546,17 +546,17 @@
         var searchTerm = $('#doctorSearch').val();
 
         if (searchTerm.trim() === '') {
-        // If search term is empty, fetch all doctors
+  
         fetchAllDoctors();
     } else {
-        // Fetch doctors from database based on search term
+     
         fetch('searchDoctors.php', {
         method: 'POST',
         body: JSON.stringify({ searchTerm: searchTerm })
     })
         .then(response => response.json())
         .then(data => {
-        // Populate dropdown list with search results
+       
         populateDoctorList(data);
     })
         .catch(error => console.error('Error searching doctors:', error));

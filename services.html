@@ -196,7 +196,7 @@
         }
 
         .dropdown:hover .dropdown-content {
-            display: block; /* Remove this line */
+            display: block;
         }
 
         @media only screen and (max-width: 768px) {
@@ -208,14 +208,14 @@
                 justify-content: space-between;
             }
 
-            /* Show burger icon */
+            
             .burger-icon {
                 display: block;
             }
 
-            /* Hide regular menu items */
+         
             #menu-container ul {
-                display: none; /* Hide the menu by default */
+                display: none; 
                 position: absolute;
                 top: 70px;
                 width: 80%;
@@ -226,12 +226,10 @@
                 z-index: 1;
             }
 
-            /* Show menu items when the show-menu class is applied */
             #menu-container.show-menu ul {
-                display: block; /* Show the menu when the show-menu class is applied */
+                display: block;
             }
 
-            /* Spacing for menu items */
             #menu-container ul li {
                 padding: 8px 0;
             }
@@ -293,11 +291,11 @@
         <img src="uploads/medi.png" alt="Logo">
     </div>
     <div id="menu-container">
-        <!-- Burger icon button -->
+
         <div class="burger-icon">
             <button id="menu-toggle"><i class="fas fa-bars"></i></button>
         </div>
-        <!-- Regular flex menu -->
+      
         <ul>
             <li><a href="index.php"><i class="fas fa-home"></i></a></li>
             <li><a href="services.html">Services</a></li>
@@ -421,30 +419,29 @@
         const menuContainer = document.getElementById("menu-container");
         const dropdownContent = document.querySelector(".dropdown-content");
 
-        // Toggle menu when burger icon is clicked
+        
         burgerIcon.addEventListener("click", function() {
             menuContainer.classList.toggle("show-menu");
-            // Toggle dropdown content visibility when the menu is clicked
+        
             dropdownContent.style.display = menuContainer.classList.contains("show-menu") ? "block" : "none";
         });
 
-        // Close menu when clicked outside
+       
         document.addEventListener("click", function(event) {
             if (!menuContainer.contains(event.target) && event.target !== burgerIcon) {
                 menuContainer.classList.remove("show-menu");
-                dropdownContent.style.display = "none"; // Hide dropdown content when menu is closed
+                dropdownContent.style.display = "none"; 
             }
         });
 
-        // Show/hide dropdown content on click for mobile devices
+
         const joinTeam = document.querySelector(".dropdown");
 
         joinTeam.addEventListener("click", function(event) {
-            event.stopPropagation(); // Prevent menu from closing when clicking on the dropdown
+            event.stopPropagation(); 
             dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
         });
 
-        // Hide dropdown content when clicking outside the dropdown
         document.addEventListener("click", function(event) {
             if (!joinTeam.contains(event.target) && event.target !== dropdownContent) {
                 dropdownContent.style.display = "none";
